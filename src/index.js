@@ -1,17 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Timer from './App';
+
+const handleTimeEnd = () => {
+  console.log("Час вийшов!");
+}
+
+const handleTimeStart = (timeLeft) => {
+  console.log("Таймер запущено з часом: " + timeLeft);
+}
+
+const handleTimePause = (timeLeft) => {
+  console.log("Таймер на паузі з часом: " + timeLeft);
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Timer
+    time={60}
+    autostart={true}
+    step={1000}
+    onTick={(time) => console.log("Залишилось часу: " + time)}
+    onTimeEnd={handleTimeEnd}
+    onTimeStart={handleTimeStart}
+    onTimePause={handleTimePause}
+  />
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
